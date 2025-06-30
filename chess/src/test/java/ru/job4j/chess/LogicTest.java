@@ -21,23 +21,24 @@ public class LogicTest {
     }
 
     @Test
-    public void whenMoveNotDiagonalThenImpossibleMoveException() {
+    public void whenMoveThenImpossibleMoveException()
+            throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
         Logic logic = new Logic();
-        logic.add(new BishopBlack(Cell.C8));
-        ImpossibleMoveException exception = assertThrows(
-                ImpossibleMoveException.class,
-                () -> logic.move(Cell.C8, Cell.C5)
-        );
+        logic.add(new BishopBlack(Cell.F8));
+        ImpossibleMoveException exception = assertThrows(ImpossibleMoveException.class, () -> {
+            logic.move(Cell.F8, Cell.C6);
+        });
         assertThat(exception.getMessage()).isEqualTo(
-                String.format("Could not move by diagonal from %s to %s", Cell.C8, Cell.C5)
+                String.format("Could not move by diagonal from %s to %s", Cell.F8, Cell.C6)
         );
     }
+
 
     @Test
     public void whenDestinationOccupiedThenOccupiedCellException() {
         Logic logic = new Logic();
         logic.add(new BishopBlack(Cell.F1));
-        logic.add(new QueenBlack(Cell.C4)); // блокирует путь
+        logic.add(new QueenBlack(Cell.C4));
         OccupiedCellException exception = assertThrows(
                 OccupiedCellException.class,
                 () -> logic.move(Cell.F1, Cell.A6)
