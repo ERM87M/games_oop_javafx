@@ -33,6 +33,7 @@ public class LogicTest {
         );
     }
 
+
     @Test
     public void whenDestinationOccupiedThenOccupiedCellException() {
         Logic logic = new Logic();
