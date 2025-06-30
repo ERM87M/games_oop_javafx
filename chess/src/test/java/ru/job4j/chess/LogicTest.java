@@ -16,7 +16,7 @@ public class LogicTest {
         FigureNotFoundException exception = assertThrows(
                 FigureNotFoundException.class,
                 () -> logic.move(Cell.E1, Cell.E5)
-    );
+        );
         assertThat(exception.getMessage()).isEqualTo("Figure not found on the board.");
     }
 
@@ -32,7 +32,6 @@ public class LogicTest {
                 String.format("Could not move by diagonal from %s to %s", Cell.F8, Cell.C6)
         );
     }
-
 
     @Test
     public void whenDestinationOccupiedThenOccupiedCellException() {
